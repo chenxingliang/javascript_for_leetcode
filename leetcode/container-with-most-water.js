@@ -10,7 +10,7 @@ var maxArea = function (height) {
             current = (j - i) * Math.min(height[i], height[j]);
             max = current > max ? current : max;
         }
-    }
+    }   
     return max;
 };
 

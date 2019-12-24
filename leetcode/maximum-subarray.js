@@ -17,3 +17,5 @@ var maxSubArray = function (nums) {
 
     return ans;
 };
+
+console.log(maxSubArray([1, 2, 3, 4, -5, 6, -1]))

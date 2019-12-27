@@ -17,4 +17,6 @@ var grayCode = function (n) {
     return res;
 };
 
+//G(i) = i ^ (i/2)
+
 console.log(grayCode(2));

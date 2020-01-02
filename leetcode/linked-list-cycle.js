@@ -15,16 +15,14 @@ var hasCycle = function (head) {
         return false;
     }
 
-    let index = 0,
-        current = head,
+    let current = head,
         hash = new Map();
     
     while (current) {
         if (hash.get(current)) {
             return true;
         }
-        hash.set(current, index);
-        index++;
+        hash.set(current, true);
         current = current.next;
     }
 

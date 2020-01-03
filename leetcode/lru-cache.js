@@ -2,21 +2,11 @@
  * @param {number} capacity
  */
 
-let cache = new Map(),
-    size,
-    capacity,
-    head,
-    tail;
-
 var LRUCache = function (capacity) {
     this.size = 0;
     this.capacity = capacity;
-
-    head = new DLinkedNode();
-    tail = new DLinkedNode();
-
-    head.next = tail;
-    tail.prev = head;
+    this.cache = new Map();
+    this.list = new DLinkList();
 };
 
 /** 
@@ -24,13 +14,13 @@ var LRUCache = function (capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function (key) {
-    let node = cache.get(key);
+    let node = this.cache.get(key);
 
     if (node == null) {
         return -1;
     }
 
-    moveToHead(node);
+    this.list.moveToHead(node);
 
     return node.value;
 };
@@ -41,29 +31,78 @@ LRUCache.prototype.get = function (key) {
  * @return {void}
  */
 LRUCache.prototype.put = function (key, value) {
-    let node = cache.get(key);
+    let node = this.cache.get(key);
 
     if (node == null) {
         let newNode = new DLinkedNode();
         newNode.key = key;
         newNode.value = value;
 
-        cache.set(key, newNode);
-        addNode(newNode);
+        this.cache.set(key, newNode);
+        this.list.addNode(newNode);
 
         ++this.size;
 
         if (this.size > this.capacity) {
-            let tail = popTail();
-            cache.delete(tail.key);
+            let tail = this.list.popTail();
+            this.cache.delete(tail.key);
             --this.size;
         }
     } else {
         node.value = value;
-        moveToHead(node);
+        this.list.moveToHead(node);
     }
 };
 
+// 双向链表节点
+class DLinkedNode {
+    constructor (key, value) {
+        this.key = key;
+        this.value = value;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+// 首尾固定的双向链表
+class DLinkList {
+    constructor () {
+        this.head = new DLinkedNode();
+        this.tail = new DLinkedNode();
+
+        this.head.next = this.tail;
+        this.tail.prev = this.head;
+    }
+
+    addNode (node) {
+        node.prev = this.head;
+        node.next = this.head.next;
+
+        this.head.next.prev = node;
+        this.head.next = node;
+    }
+
+    removeNode (node) {
+        let prev = node.prev,
+            next = node.next;
+
+        prev.next = next;
+        next.prev = prev;
+    }
+
+    moveToHead (node) {
+        this.removeNode(node);
+        this.addNode(node);
+    }
+
+    popTail () {
+        let res = this.tail.prev;
+        this.removeNode(res);
+        return res;
+    }
+}
+
+/*
 var DLinkedNode = function (key, value) {
     this.key = key;
     this.value = value;
@@ -97,6 +136,7 @@ var popTail = function () {
     removeNode(res);
     return res;
 }
+*/
 
 /** 
  * Your LRUCache object will be instantiated and called as such:

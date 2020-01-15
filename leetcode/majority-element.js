@@ -10,14 +10,14 @@ var majorityElement = function (nums) {
     }
 
     let hashMap = {},
-        majorityNum = null;
+        majorityNum = nums[0];
 
     for (let num of nums) {
         if (hashMap[num]) {
-            hasMap[num]++;
-            majorityNum = hasMap[num] > hasMap[majorityNum] ? num : majorityNum;
+            hashMap[num]++;
+            majorityNum = hashMap[num] > hashMap[majorityNum] ? num : majorityNum;
         } else {
-            hasMap[num] = 1;
+            hashMap[num] = 1;
         }
     }
 

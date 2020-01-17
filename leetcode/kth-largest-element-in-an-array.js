@@ -20,22 +20,15 @@ class MaxStack {
     }
 
     add (num) {
-        if (this.stack.length == 0) {
-            this.stack.unshift(num);
-        } else {
-            for (let i = 0; i < this.stack.length; i++) {
-                if (num >= this.stack[i]) {
-                    [num, this.stack[i]] = [this.stack[i], num];
-                }
-            }
-            this.stack.push(num);
-        }
+        this.stack.unshift(num);
         this.adjust();
     }
 
     adjust () {
-        if (this.stack.length > this.size) {
-            this.stack.shift();
+        for (let i = 0; i < this.stack.length; i++) {
+            if (this.stack[i] && this.stack[i + 1] && this.stack[i] > this.stack[i + 1]) {
+                [this.stack[i], this.stack[i + 1]] = [this.stack[i + 1], this.stack[i]];
+            }
         }
     }
 

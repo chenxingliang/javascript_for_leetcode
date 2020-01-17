@@ -20,22 +20,28 @@ class MaxStack {
     }
 
     add (num) {
-        this.stack.unshift(num);
-        this.adjust();
+        if (this.stack.length > this.size && this.stack[0] >= num) {
+            return;
+        } else {
+            this.stack.unshift(num);
+            this.adjust();
+        }
     }
 
-    adjust () {
+    adjust() {
         for (let i = 0; i < this.stack.length; i++) {
-            if (this.stack[i] && this.stack[i + 1] && this.stack[i] > this.stack[i + 1]) {
+            if (this.stack[i] != null && this.stack[i + 1] != null && this.stack[i] > this.stack[i + 1]) {
                 [this.stack[i], this.stack[i + 1]] = [this.stack[i + 1], this.stack[i]];
             }
+        }
+        if (this.stack.length > this.size) {
+            this.stack.shift();
         }
     }
 
     top () {
-        console.log(this.stack)
         return this.stack[0];
     }
 }
 
-findKthLargest([3, 2, 1, 5, 6, 4], 2)
+findKthLargest([-1, 2, 0], 2)

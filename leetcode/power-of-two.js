@@ -9,3 +9,5 @@ var isPowerOfTwo = function (n) {
     }
     return res == 1 ? true : false;
 };
+
+console.log(isPowerOfTwo(2147483648))

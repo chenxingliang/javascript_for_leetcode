@@ -12,25 +12,36 @@
  * @return {TreeNode}
  */
 var lowestCommonAncestor = function (root, p, q) {
-    
+    let stack = [],
+        parentQueue = new Map();
+
+    parentQueue.set(root, null);
+    stack.push(root);
+
+    while (!parentQueue.has(p) || !parentQueue.has(q)) {
+        let node = stack.pop();
+
+        if (node.left != null) {
+            parentQueue.set(node.left, node);
+            stack.push(node.left);
+        }
+
+        if (node.right != null) {
+            parentQueue.set(node.right, node);
+            stack.push(node.right);
+        }
+    }
+
+    let ancestors = new Set();
+
+    while (p != null) {
+        ancestors.add(p);
+        p = parentQueue.get(p);
+    }
+
+    while(!ancestors.has(q)) {
+        q = parentQueue.get(q);
+    }
+
+    return q;
 };
-
-var recurseTree = function (root, p, q) {
-    if (root == null) {
-        return false;
-    }
-
-    let left = 0,
-        right = 0,
-        middle = 0;
-
-    if (root == p || root == q) {
-        middle = 1;
-    }
-
-    left = recurseTree(root.left, p, q) ? 1 : 0;
-
-    right = recurseTree(root.right, p, q) ? 1 : 0;
-
-    if (left + middle + right >= 2) {}
-}

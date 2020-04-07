@@ -10,7 +10,7 @@ var removeElement = function(nums, val) {
     while (i < len) {
         if (nums[i] == val) {
             [nums[i], nums[len - 1]] = [nums[len - 1], nums[i]];
-            n--;
+            len--;
         } else {
             i++;
         }

@@ -24,4 +24,4 @@ var integerBreak = function(n) {
 };
 
 const test = integerBreak(7);
-console.log(test);
+console.log(test); 

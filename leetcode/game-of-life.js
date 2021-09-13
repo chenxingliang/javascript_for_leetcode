@@ -19,7 +19,7 @@ var gameOfLife = function(board) {
     for (let r = 0; r < rLen; r++) {
         for (let c = 0; c < cLen; c++) {
             let liveCells = 0;
-            for (i = 0; i < 8; i++) {
+            for (let i = 0; i < 8; i++) {
                 liveCells += checkCell(r + dy[i], c + dx[i]);
             }
             if (board[r][c] == 1 && (liveCells < 2 || liveCells > 3)) {

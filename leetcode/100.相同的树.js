@@ -51,15 +51,15 @@ function TreeNode(val, left, right) {
 // node1.right = node3;
 
 // test2
-const node1 = new TreeNode(1);
-const node2 = new TreeNode(2);
-const node3 = new TreeNode(1);
-const node4 = new TreeNode(2);
-node1.left = node2;
-node3.right = node4;
+// const node1 = new TreeNode(1);
+// const node2 = new TreeNode(2);
+// const node3 = new TreeNode(1);
+// const node4 = new TreeNode(2);
+// node1.left = node2;
+// node3.right = node4;
 
 // test3
 // const node1 = new TreeNode(0)
 
-const test = isSameTree(node1, node3);
-console.log(test);
+// const test = isSameTree(node1, node3);
+// console.log(test);

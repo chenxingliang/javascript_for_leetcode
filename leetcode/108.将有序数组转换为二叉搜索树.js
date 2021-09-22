@@ -17,17 +17,35 @@
  * @param {number[]} nums
  * @return {TreeNode}
  */
+// var sortedArrayToBST = function(nums) {
+//   function rc (nums, left, right) {
+//     if (left > right) {
+//       return null;
+//     }
+//     const middle = Math.ceil((right - left) / 2);
+//     const root = new TreeNode(nums[middle]);
+//     root.left = rc(nums, left, middle - 1);
+//     root.right = rc(nums, middle + 1, right);
+//     return root;
+//   }
+//   return rc(nums, 0, nums.length - 1);
+// };
+function sort(nums,start,end) {
+  // 构不成区间，返回null
+  if(start>end)   
+      return null
+// 注意这里必须向下取整，js和其他语言的区别，如果默认的话应该是
+  let mid = start+Math.ceil((end-start)/2)
+// 树的结点的定义树是这样定义的
+  let root = new TreeNode(nums[mid],null,null)  
+  root.left = sort(nums,start,mid-1)
+  root.right = sort(nums,mid+1,end)
+  return root
+}
+
 var sortedArrayToBST = function(nums) {
-  const middle = Math.floor(nums.length / 2);
-  const root = new TreeNode(nums[middle]);
-  let level = 0;
-  root.right = new TreeNode(nums[2 * level + 2 + middle]);
-  root.left = new TreeNode(nums[-2 * level - 1 + middle]);
-  function rc (root, level) {
-    
-  }
-  rc(root, level);
-  return root;
+
+  return sort(nums,0,nums.length-1)
 };
 // @lc code=end
 

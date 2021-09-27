@@ -73,9 +73,9 @@ function TreeNode(val, left, right) {
 // let test = hasPathSum(node1, 5);
 
 // test3
-let node1 = new TreeNode(1);
-let node2 = new TreeNode(2);
-node1.left = node2;
-let test = hasPathSum(node1, 1);
+// let node1 = new TreeNode(1);
+// let node2 = new TreeNode(2);
+// node1.left = node2;
+// let test = hasPathSum(node1, 1);
 
 console.log(test);

@@ -39,12 +39,12 @@ var isPalindrome = function(s) {
 // @lc code=end
 
 // test1
-// let test = isPalindrome('A man, a plan, a canal: Panama');
+let test = isPalindrome('A man, a plan, a canal: Panama');
 
 // test2
 // let test = isPalindrome('race a car');
 
 // test
-let test = isPalindrome('abccba');
+// let test = isPalindrome('abccba');
 
 console.log(test);

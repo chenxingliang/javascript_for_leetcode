@@ -62,9 +62,9 @@ var convertToTitle = function(columnNumber) {
 // let test = convertToTitle(701);
 
 // test4
-let test = convertToTitle(2147483647);
+// let test = convertToTitle(2147483647);
 
 // test5
-// let test = convertToTitle(52);
+let test = convertToTitle(52);
 
 console.log(test);

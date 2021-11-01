@@ -11,6 +11,9 @@
  */
 var summaryRanges = function(nums) {
   const res = [];
+  if (nums.length === 0) {
+    return res;
+  }
   let min = nums[0];
   let max = nums[0];
   for (let i = 1; i < nums.length; i++) {
